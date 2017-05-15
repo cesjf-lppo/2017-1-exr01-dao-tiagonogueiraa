@@ -5,6 +5,8 @@
  */
 package br.cesjf.lppo.servlets;
 
+import br.ces.lppo.classe.Pedido;
+import br.ces.lppo.dao.PedidoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -31,7 +33,23 @@ public class CriaPedidoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+	
+	Pedido pedido = new Pedido();
+	pedido.setPedido(Long.parseLong(request.getParameter("pedido")));
+	pedido.setDono(request.getParameter("dono"));
+	pedido.setValor(Double.parseDouble(request.getParameter("valor")));
+	pedido.setNome(request.getParameter("nome"));
+
+	PedidoDAO dao = new PedidoDAO();
+	try {
+	    dao.criaPedido(pedido);
+	} catch (Exception ex) {
+	    request.setAttribute("mesangem", ex);
+	    request.getRequestDispatcher("WEB-INF/novo-pedido.jsp").forward(request, response);
+	    return;
+	}
   
+	response.sendRedirect("pedidos.html");
     }
 
  
