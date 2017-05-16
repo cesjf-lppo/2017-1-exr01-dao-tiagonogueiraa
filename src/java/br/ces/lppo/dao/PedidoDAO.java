@@ -8,17 +8,26 @@ package br.ces.lppo.dao;
 import br.ces.lppo.classe.Pedido;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.jms.ConnectionFactory;
 
 /**
  *
  * @author tiago
  */
 public class PedidoDAO {
+            private PreparedStatement opNovo;
+    public PedidoDAO() throws Exception {
+        
+        Connection conexao = ConnectionFactory.createConnection();
+      opNovo = conexao.prepareStatement("INSERT INTO pedido (pedido, dono, valor, nome) VALUES(?,?,?,?)");
+    
+}
     
     public List<Pedido> listAll() throws Exception {
 	try {
@@ -63,6 +72,21 @@ public class PedidoDAO {
 	} catch (SQLException ex){
 	    throw new Exception("Erro ao inserir o contato!", ex);
 	}
+
+    }
+    
+       public void cria(Pedido pedido) throws Exception {
+        try {
+
+            opPedido.setString(1, pedido.getNome());
+            opPedido.setString(2, pedido.getSobrenome());
+            opPedido.setString(3, pedido.getTelefone());
+            opPedido.executeUpdate();
+
+
+        } catch (SQLException ex) {
+            throw new Exception("Erro ao inserir o pedido!", ex);
+        }
 
     }
 

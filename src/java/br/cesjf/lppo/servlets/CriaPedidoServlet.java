@@ -40,8 +40,8 @@ public class CriaPedidoServlet extends HttpServlet {
 	pedido.setValor(Double.parseDouble(request.getParameter("valor")));
 	pedido.setNome(request.getParameter("nome"));
 
-	PedidoDAO dao = new PedidoDAO();
 	try {
+            PedidoDAO dao = new PedidoDAO();
 	    dao.criaPedido(pedido);
 	} catch (Exception ex) {
 	    request.setAttribute("mesangem", ex);

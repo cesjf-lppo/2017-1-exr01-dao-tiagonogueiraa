@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author tiago
  */
-@WebServlet(name = "ListaPedidosServlet", urlPatterns = {"/Pedidos.html"})
+@WebServlet(name = "ListaPedidosServlet", urlPatterns = {"/pedidos.html"})
 public class ListaPedidosServlet extends HttpServlet {
 
   
@@ -33,8 +33,8 @@ public class ListaPedidosServlet extends HttpServlet {
 	
 	List<Pedido> pedidos;
 	
-	PedidoDAO dao = new PedidoDAO();
 	try {
+            PedidoDAO dao = new PedidoDAO();
 	    pedidos = dao.listAll();
 	} catch (Exception ex) {
 	    Logger.getLogger(ListaPedidosServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -43,16 +43,12 @@ public class ListaPedidosServlet extends HttpServlet {
 	}
 	
 	request.setAttribute("pedidos", pedidos );
-	request.getRequestDispatcher("WEB-INF/lista-pedidos.jsp").forward(request, response);
+	request.getRequestDispatcher("WEB-INF/lista-pedido.jsp").forward(request, response);
 	
     }
 
    
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
-	
-    }
+ 
 
    
 

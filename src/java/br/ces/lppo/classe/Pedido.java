@@ -21,12 +21,7 @@ public class Pedido {
     private Date dataEHora;
 
     public Pedido() {
-        id = null;
-        pedido = null;
-        dono = null;
-        valor = 0;
-        nome = null;
-        dataEHora = null;
+        
         
     }
 
