@@ -42,7 +42,7 @@ public class CriaPedidoServlet extends HttpServlet {
 
 	try {
             PedidoDAO dao = new PedidoDAO();
-	    dao.criaPedido(pedido);
+	    dao.cria(pedido);
 	} catch (Exception ex) {
 	    request.setAttribute("mesangem", ex);
 	    request.getRequestDispatcher("WEB-INF/novo-pedido.jsp").forward(request, response);

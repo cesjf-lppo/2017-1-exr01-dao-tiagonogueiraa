@@ -7,37 +7,35 @@ package br.ces.lppo.dao;
 
 import br.ces.lppo.classe.Pedido;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import javax.jms.ConnectionFactory;
+
+
 
 /**
  *
  * @author tiago
  */
 public class PedidoDAO {
-            private PreparedStatement opNovo;
+          private PreparedStatement opNovo;
+          private PreparedStatement opListar;
+          
+          
     public PedidoDAO() throws Exception {
         
         Connection conexao = ConnectionFactory.createConnection();
-      opNovo = conexao.prepareStatement("INSERT INTO pedido (pedido, dono, valor, nome) VALUES(?,?,?,?)");
-    
+        opNovo = conexao.prepareStatement("INSERT INTO pedido (pedido, dono, valor, nome) VALUES(?,?,?,?)");
+        opListar = conexao.prepareStatement("SELECT * FROM pedido");
 }
     
     public List<Pedido> listAll() throws Exception {
 	try {
 	    List<Pedido> pedidos = new ArrayList<>();
-	    Class.forName("org.apache.derby.jdbc.ClientDriver");
-	    
-	    Connection conexao = DriverManager.getConnection("jdbc:derby://localhost:1527/lppo-2017-1", "usuario", "senha");
-	    
-	    Statement operacao = conexao.createStatement();
-	    ResultSet resultado = operacao.executeQuery("SELECT * FROM pedido");
+	    ResultSet resultado = opListar.executeQuery();
+            
 	    while (resultado.next()){
 		Pedido pedido = new Pedido();
 		pedido.setPedido(Long.parseLong(resultado.getString("pedido")));
@@ -47,41 +45,23 @@ public class PedidoDAO {
 		
 		pedidos.add(pedido);
 		}
+            
 	    return pedidos;
-	} catch (ClassNotFoundException ex){
-	    throw new Exception("Erro ao carregar driver!", ex);
+            
 	} catch (SQLException ex){
 	    throw new Exception("Erro ao inserir o pedido!", ex);
 	}
 	
     }
-
-    public void criaPedido(Pedido pedido) throws Exception {
-	try {
-	    Class.forName("org.apache.derby.jdbc.CLientDriver");
-	    Connection conexao = DriverManager.getConnection("jdbc:derby://localhost:1527/lppo-2017-1", "usuario", "senha");
-	    Statement operacao = conexao.createStatement();
-	    operacao.executeUpdate("INSERT INTO pedido (pedido, dono, valor, nome) VALUES('"
-		    + pedido.getNome() + "'"
-		    + pedido.getDono() + "'"
-		    + pedido.getValor() + "'"
-		    + pedido.getNome() + "')");
-
-	} catch (ClassNotFoundException ex) {
-	    throw new Exception("Erro ao carregar driver!", ex);
-	} catch (SQLException ex){
-	    throw new Exception("Erro ao inserir o contato!", ex);
-	}
-
-    }
     
        public void cria(Pedido pedido) throws Exception {
         try {
 
-            opPedido.setString(1, pedido.getNome());
-            opPedido.setString(2, pedido.getSobrenome());
-            opPedido.setString(3, pedido.getTelefone());
-            opPedido.executeUpdate();
+            opNovo.setLong(1, pedido.getPedido());
+            opNovo.setString(2, pedido.getDono());
+            opNovo.setDouble(3, pedido.getValor());
+            opNovo.setString(4, pedido.getNome());
+            opNovo.executeUpdate();
 
 
         } catch (SQLException ex) {

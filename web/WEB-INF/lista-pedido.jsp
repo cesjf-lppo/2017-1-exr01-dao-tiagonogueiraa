@@ -27,12 +27,14 @@
             <tbody>
                 <c:forEach var="pedido" items="${pedidos}">
                     <tr>
-                        <td><a href="detalhes.html?id=${pedido.id}">${pedido.id}</a><td>
+                        <td><a href="detalhes.html?id=${pedido.id}">${pedido.id}</a></td>
                         <td>${pedido.pedido}</td>
                         <td>${pedido.dono}</td>
                         <td>${pedido.valor}</td>
                         <td>${pedido.nome}</td>
-                        
-                </c:forEach>            </tbody>
+                    </tr>
+                    
+                </c:forEach>           
+            </tbody>
         </table>   </body>
 </html>
