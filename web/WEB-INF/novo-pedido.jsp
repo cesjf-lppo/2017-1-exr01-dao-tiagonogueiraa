@@ -18,7 +18,7 @@
                 <label>Pedido: <input type="text" name="pedido" placeholder="Numero pedido" size="10"/></label><br><br>
                 <label>Dono: <input type="text" name="dono" placeholder="Dono" size="30"/> </label><br><br>
                 <label>Valor: <input type="number" name="valor" placeholder="00,00" size="10"/> </label><br><br>
-                <label>Nome: <input type="text" name="nome" placeholder="Nome" size="30"/></label><br><br>
+                <label>Nome:(item) <input type="text" name="nome" placeholder="Nome" size="30"/></label><br><br>
             </p>   
 	    <label><input type="submit" value="Gravar" /></label>
 	    <label><input type="reset" value="Limpar" /></label>

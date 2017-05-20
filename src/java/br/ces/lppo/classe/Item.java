@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author alunoces
  */
-public class Pedido {
+public class Item {
     
     private Long id;
     private Long pedido;
@@ -20,7 +20,7 @@ public class Pedido {
     private String nome;
     private Date dataEHora;
 
-    public Pedido() {
+    public Item() {
         
         
     }

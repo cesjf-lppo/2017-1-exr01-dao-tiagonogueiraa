@@ -9,7 +9,6 @@ import br.ces.lppo.classe.Item;
 import br.ces.lppo.dao.ItemDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,35 +20,32 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author tiago
+ * @author alunoces
  */
-@WebServlet(name = "ListaPedidosServlet", urlPatterns = {"/pedidos.html"})
-public class ListaPedidosServlet extends HttpServlet {
+@WebServlet(name = "ListaPorPedido", urlPatterns = {"/ListaPorPedido"})
+public class ListaPorPedido extends HttpServlet {
 
-  
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
-	
-	List<Item> pedidos;
-	
-	try {
+            throws ServletException, IOException {
+        List<Item> pedidos;
+        
+        try {
             ItemDAO dao = new ItemDAO();
-	    pedidos = dao.listAll();
-	} catch (Exception ex) {
-	    Logger.getLogger(ListaPedidosServlet.class.getName()).log(Level.SEVERE, null, ex);
-	    pedidos = new ArrayList<>();
-	    request.setAttribute("mensagem", ex.getLocalizedMessage());
-	}
-	
-	request.setAttribute("pedidos", pedidos );
-	request.getRequestDispatcher("WEB-INF/lista-pedido.jsp").forward(request, response);
-	
+            pedidos = dao.listByPedido(Long.parseLong(request.getParameter("pedido")));
+        } catch (Exception ex) {
+            Logger.getLogger(ListaPorPedido.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }
 
    
- 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+    }
 
-   
-
+    
 }
