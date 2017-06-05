@@ -1,0 +1,8 @@
+<%@ page pageEncoding="UTF-8" %>
+<nav>
+    <h2>Controle de pedidos.</h2>
+    <ul>
+	<li> <a href="Itens.html">Listar Itens</a></li>
+	<li> <a href="NovoItem.html">Novo Item </a></li>
+    </ul>
+</nav>
