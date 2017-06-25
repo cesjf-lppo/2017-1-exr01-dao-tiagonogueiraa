@@ -31,7 +31,7 @@
                     <tr>
                         <td><a href="atualizaItem.html?id=${item.id}">${item.id}</a></td>
                         <td><a href="itensPorPedido.html?pedido=${item.pedido}">${item.pedido}</a></td>
-                        <td><a href="listaPorDono.html?dono=${item.dono}">${item.dono}</a></td>
+                        <td><a href="listaDono.html?dono=${item.dono}">${item.dono}</a></td>
                         <td>${item.valor}</td>
                         <td>${item.descricao}</td>
 			<td>${item.dataEHora}</td>
@@ -39,5 +39,7 @@
                     
                 </c:forEach>           
             </tbody>
-        </table>   </body>
+        </table>   
+    </body>
+    
 </html>
