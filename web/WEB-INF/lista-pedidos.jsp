@@ -33,8 +33,15 @@
 			<td>${pedido.dono}</td>
 			<td>${pedido.valor}</td>
 			<td>${pedido.descricao}</td>
+			
+			
 		    </tr>
 		</c:forEach>
+		    
+		    <tr>
+                    <td colspan="5"> Total Pedido: </td>
+                    <td>${total}</td>
+                </tr>
 	    </tbody>
 	</table>
 	

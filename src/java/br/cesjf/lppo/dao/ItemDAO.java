@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -148,6 +149,22 @@ public class ItemDAO {
 	    throw new Exception("Erro ao inserir item", ex);
 	}
 	
+    }
+
+    
+
+    public float calcularTotalPedido(Long numPedido) throws Exception {
+	try{
+         float valor = 0;
+         opTotalValorPedido.setLong(1, numPedido);
+         ResultSet resultado = opTotalValorPedido.executeQuery();
+         while(resultado.next()){
+            valor = resultado.getFloat(1);
+         }
+         return valor;
+     }catch (SQLException ex){
+            throw new Exception("Erro ao cao calcular valor pedido", ex);
+     }
     }
     
     

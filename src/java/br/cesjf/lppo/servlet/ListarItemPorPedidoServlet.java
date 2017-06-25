@@ -35,10 +35,11 @@ public class ListarItemPorPedidoServlet extends HttpServlet {
 	
 	Long numPedido = Long.parseLong(request.getParameter("pedido"));
 	
-	
+	float total = 0;
 	try {
 	    ItemDAO dao  = new ItemDAO();
 	    pedidos = dao.listarItemPorPedido(numPedido);
+	    total = dao.calcularTotalPedido(numPedido);
 	    
 	} catch (Exception ex) {
 	    Logger.getLogger(ListarItemPorPedidoServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -49,8 +50,9 @@ public class ListarItemPorPedidoServlet extends HttpServlet {
 //	request.setAttribute("pedido", pedidos);
 //	request.getRequestDispatcher("WEB-INF/lista-pedidos.jsp").forward(request, response);
 //	
-	request.setAttribute("itens", pedidos);
-	request.getRequestDispatcher("WEB-INF/lista-itens.jsp").forward(request, response);
+	request.setAttribute("total", total);
+	request.setAttribute("pedido", pedidos);
+	request.getRequestDispatcher("WEB-INF/lista-pedidos.jsp").forward(request, response);
 	
     }
 

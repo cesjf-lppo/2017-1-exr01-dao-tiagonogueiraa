@@ -33,16 +33,18 @@ public class ListarItensServlet extends HttpServlet {
        
         List<Item> itens;
         
+	
         try {
             ItemDAO dao = new ItemDAO();
             itens = dao.listarItens();
+	    
         } catch (Exception ex) {
             Logger.getLogger(ListarItensServlet.class.getName()).log(Level.SEVERE, null, ex);
             itens = new ArrayList<>();
             request.setAttribute("mensagem", ex.getLocalizedMessage());
             
         }
-        
+   
         request.setAttribute("itens", itens );
 	request.getRequestDispatcher("WEB-INF/lista-itens.jsp").forward(request, response);
     }
