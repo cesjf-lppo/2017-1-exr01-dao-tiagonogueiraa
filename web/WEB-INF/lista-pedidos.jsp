@@ -23,6 +23,7 @@
 		    <th>Dono</th>
 		    <th>Valor</th>
 		    <th>Descricao</th>
+		    <th>Modificado Em</th>
 		</tr>
 	    </thead>
 	    <tbody>
@@ -33,7 +34,7 @@
 			<td>${pedido.dono}</td>
 			<td>${pedido.valor}</td>
 			<td>${pedido.descricao}</td>
-			
+			<td>${pedido.dataEHora}</td>
 			
 		    </tr>
 		</c:forEach>

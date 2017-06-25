@@ -23,6 +23,7 @@
                     <th>Dono</th>
                     <th>Valor</th>
                     <th>Descricao</th>
+		    <th>Modificado Em</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,6 +34,7 @@
                         <td><a href="listaPorDono.html?dono=${item.dono}">${item.dono}</a></td>
                         <td>${item.valor}</td>
                         <td>${item.descricao}</td>
+			<td>${item.dataEHora}</td>
                     </tr>
                     
                 </c:forEach>           

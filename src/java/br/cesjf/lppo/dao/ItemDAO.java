@@ -75,6 +75,7 @@ public class ItemDAO {
                 item.setDono(resultado.getString("dono"));
                 item.setValor(resultado.getDouble("valor"));
                 item.setDescricao(resultado.getString("descricao"));
+		item.setDataEHora(resultado.getTimestamp("atualizacao"));
                 
                 itens.add(item);            
         }
